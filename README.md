@@ -2,7 +2,8 @@
 
 PHP Note App
 
-## Database structure
+## Database
+name: `noteapp`
 
 **Table: notes**
 | #   | Name        | Type          | Collation          |

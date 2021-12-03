@@ -1,4 +1,10 @@
 <?php
+
+// Connect to database
+$pdo = new PDO('mysql:server=localhost;dbname=noteapp', 'root', '');
+
+// Whenever there's and error with the database, throw error
+$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 ?>
 
 <!DOCTYPE html>
