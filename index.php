@@ -4,8 +4,6 @@ require_once './Connection.php';
 $connection = new Connection();
 
 $notes = $connection->getNotes();
-
-var_dump($notes);
 ?>
 
 <!DOCTYPE html>
@@ -27,16 +25,18 @@ var_dump($notes);
       <button>New note</button>
     </form>
     <div class="notes">
-      <div class="note">
-        <div class="title">
-          <a href="">Sample note</a>
+      <?php foreach ($notes as $note) : ?>
+        <div class="note">
+          <div class="title">
+            <a href=""><?php echo $note['title'] ?></a>
+          </div>
+          <div class="description">
+            <?php echo $note['description'] ?>
+          </div>
+          <small><?php echo $note['create_date'] ?></small>
+          <button class="close">X</button>
         </div>
-        <div class="description">
-          Sample note description
-        </div>
-        <small>15/02/20 19:00:00</small>
-        <button class="close">X</button>
-      </div>
+      <?php endforeach; ?>
     </div>
   </div>
 </body>
