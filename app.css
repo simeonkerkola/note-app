@@ -2,7 +2,7 @@
   box-sizing: border-box;
 }
 body {
-  font-family: Arial;
+  font-family: sans-serif;
 }
 
 .new-note {
@@ -13,7 +13,7 @@ body {
 .new-note input,
 .new-note textarea,
 .new-note button {
-  font-family: Arial;
+  font-family: sans-serif;
   padding: 5px 10px;
   display: block;
   width: 100%;
@@ -43,10 +43,14 @@ body {
 }
 .note .close {
   position: absolute;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.8);
+  border: none;
+  border-radius: 999px;
+  width: 20px;
+  height: 20px;
   right: 10px;
   top: 10px;
-  background-color: transparent;
-  border: none;
 }
 .note small {
   position: absolute;

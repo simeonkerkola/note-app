@@ -1,7 +1,6 @@
 <?php
 
-require_once './Connection.php';
-$connection = new Connection();
+$connection = require_once './Connection.php';
 
 $notes = $connection->getNotes();
 ?>
@@ -34,7 +33,7 @@ $notes = $connection->getNotes();
             <?php echo $note['description'] ?>
           </div>
           <small><?php echo $note['create_date'] ?></small>
-          <button class="close">X</button>
+          <button type='button' class="close">X</button>
         </div>
       <?php endforeach; ?>
     </div>
