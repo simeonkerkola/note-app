@@ -3,6 +3,17 @@
 $connection = require_once './Connection.php';
 
 $notes = $connection->getNotes();
+
+$currentNote = [
+  'id' => '',
+  'title' => '',
+  'description' => ''
+];
+
+// Get current note by query param: "id"
+if (isset($_GET['id'])) {
+  $currentNote = $connection->getNoteById($_GET['id']);
+}
 ?>
 
 <!DOCTYPE html>
@@ -18,16 +29,23 @@ $notes = $connection->getNotes();
 
 <body>
   <div>
-    <form class="new-note" action="create.php" method="post">
-      <input type="text" name="title" placeholder="Note title" autocomplete="off">
-      <textarea name="description" cols="30" rows="4" placeholder="Note Description"></textarea>
-      <button>New note</button>
+    <form class="new-note" action="save.php" method="post">
+      <input type="hidden" name="id" value="<?php echo $currentNote['id'] ?>">
+      <input required type="text" name="title" placeholder="Note title" autocomplete="off" value="<?php echo $currentNote['title'] ?>">
+      <textarea name="description" cols="30" rows="4" placeholder="Note Description"><?php echo $currentNote['description'] ?></textarea>
+      <button>
+        <?php if ($currentNote['id']) : ?>
+          Update Note
+        <?php else : ?>
+          New note
+        <?php endif; ?>
+      </button>
     </form>
     <div class="notes">
       <?php foreach ($notes as $note) : ?>
         <div class="note">
           <div class="title">
-            <a href=""><?php echo $note['title'] ?></a>
+            <a href="?id=<?php echo $note['id'] ?>"><?php echo $note['title'] ?></a>
           </div>
           <div class="description">
             <?php echo $note['description'] ?>
